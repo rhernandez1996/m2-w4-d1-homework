@@ -87,30 +87,28 @@
     <aside id="leftside"></aside>
     <aside id="rightside"></aside>
     <div id="container">
-      <header><span>
-        <myheader></myheader>
-      </span></header>
-
+      
+      <myheader></myheader>
       <main>
         <aside id="photos">
           <img src="images/chili.jpg" alt="White Chicken Chili" width="180" />
         </aside>
-        <h2><mycomments></mycomments></h2>
-
+        <h2 id="mycomments"><mycomments></mycomments></h2>
+        
         <section id="blogposts">
-          <div class="post">
+            <div class="post">
             <span class="author">{{ obj1.author }}</span> —
             <span class="date">{{ obj1.date }}</span>
             <span class="reply">{{ obj1.reply }}</span>
             <p class="paragraph">{{ obj1.paragraph }}</p>
-          </div>
+          </div> 
 
           <div class="post">
             <span class="author">{{ obj2.author }}</span> —
             <span class="date">{{ obj2.date }}</span>
             <span class="reply">{{ obj2.reply }}</span>
             <p class="paragraph">
-              {{obj2.paragragh}}
+              {{obj2.paragraph}}
             </p>
           </div>
 
@@ -128,7 +126,7 @@
             <span class="date">{{ obj4.date }}</span>
             <span class="reply">{{ obj4.reply }}</span>
             <p class="paragraph">
-                obj4.paragraph
+                {{obj4.paragraph}}
             </p>
           </div>
         </section>
@@ -137,47 +135,56 @@
       <footer>&copy; Copyright FOOD BLOG</footer>
     </div>
     <script>
-        
+      var blog = {
+        template: '<header><span>Food Blog</span></header>'
+      }
+      Vue.component('myheader',{
+        template : '<header><span>Food Blog</span></header>'
+    });
+    Vue.component('mycomments',{
+        template : '<h2>Comments</h2>'
+    });
+    var vm1 = new Vue({
+        el: '#myheader'
+    });
+    var vm2 = new Vue({
+        el: '#mycomments'
+    });
 
       var container = new Vue({
-        el: ".post",
+        el: "#container",
         data: {
           obj1: {
             author: "Brianna",
             date: "February 18, 2021 @ 3:30 pm",
             reply: "REPLY",
-            paragragh:
+            paragraph:
               "Was amazing! My Walmart didn't have coriander in stock and didn't have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
           },
           obj2: {
             author: "LINH",
             date: "February 15, 2021 @ 9:46 am",
             reply: "REPLY",
-            paragragh:
+            paragraph:
               "I just made this soup today and it's so tasty! didn't have corn at home but still turned out very good.  It's a winner!  I made beef chili for my parents; but since my dad has gout he can't eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
           },
           obj3: {
             author: "CATHERINE LEONARDO",
             date: "February 13, 2021 @ 12:58 pm",
             reply: "REPLY",
-            paragragh:
+            paragraph:
               "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I've made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
           },
           obj4: {
             author: "Brianna",
             date: "February 13, 2021 @ 11:31 am",
             reply: "REPLY",
-            paragragh:
+            paragraph:
               "This recipe is dynamite! My partner usually won't eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
           },
         },
         components: {
-            'mycomments': {
-                template: "<h2>Comments</h2>"
-            },
-            'myheader': {
-                template: "<header><span>Food Blog</span></header>"
-            },
+          'myheader': blog, 
         }
       });
       
